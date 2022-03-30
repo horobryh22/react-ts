@@ -1,1 +1,1 @@
-## learning TypeScript
+## learning React and TypeScript
