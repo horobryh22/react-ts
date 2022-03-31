@@ -1,9 +1,12 @@
 import React from 'react';
-import exp from 'constants';
 
-function Rating(props: any) {
+type RatingPropsType = {
+    value: 0 | 1 | 2 | 3 | 4 | 5
+}
 
-    if (props.value === 1) {
+function Rating({value}: RatingPropsType) {
+
+    if (value === 1) {
         return <div>
             <Star checked={true}/>
             <Star checked={false}/>
@@ -12,7 +15,7 @@ function Rating(props: any) {
             <Star checked={false}/>
         </div>
     }
-    if (props.value === 2) {
+    if (value === 2) {
         return <div>
             <Star checked={true}/>
             <Star checked={true}/>
@@ -21,7 +24,7 @@ function Rating(props: any) {
             <Star checked={false}/>
         </div>
     }
-    if (props.value === 3) {
+    if (value === 3) {
         return <div>
             <Star checked={true}/>
             <Star checked={true}/>
@@ -30,7 +33,7 @@ function Rating(props: any) {
             <Star checked={false}/>
         </div>
     }
-    if (props.value === 4) {
+    if (value === 4) {
         return <div>
             <Star checked={true}/>
             <Star checked={true}/>
@@ -39,7 +42,7 @@ function Rating(props: any) {
             <Star checked={false}/>
         </div>
     }
-    if (props.value === 5) {
+    if (value === 5) {
         return <div>
             <Star checked={true}/>
             <Star checked={true}/>
@@ -60,14 +63,13 @@ function Rating(props: any) {
     );
 }
 
-// type PropsType = {
-//     checked: boolean
-//     value: number
-// }
+type StarPropsType = {
+    checked: boolean
+}
 
-function Star(props: any) {
+function Star({checked}: StarPropsType) {
     console.log('Star is rendering');
-    return (props.checked) ? <span><b>Star</b> </span> : <span>Star </span>;
+    return (checked) ? <span><b>Star</b> </span> : <span>Star </span>;
 }
 
 export default Rating;

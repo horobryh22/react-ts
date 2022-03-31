@@ -7,19 +7,24 @@ function App() {
     console.log('App is rendering');
     return (
         <div>
-            <AppTitle title={'This is APP component'}/>
-            Article1
-            <Rating  value={3}/>
-            <Accordion title={'Menu'}/>
-            Article1
-            <Rating value={4}/>
+            {/*<AppTitle title={'This is APP component'}/>*/}
+            {/*Article1*/}
+            {/*<Rating  value={3}/>*/}
+            <Accordion titleValue={'Menu'} collapsed = {false}/>
+            <Accordion titleValue={'List Users'} collapsed = {true}/>
+            {/*Article1*/}
+            {/*<Rating value={4}/>*/}
         </div>
     );
 }
 
-function AppTitle(props: any) {
+type AppTitlePropsType = {
+    title: string
+}
+
+function AppTitle({title}: AppTitlePropsType) {
     console.log('AppTitle is rendering');
-    return <div>{props.title}</div>;
+    return <div>{title}</div>;
 }
 
 
