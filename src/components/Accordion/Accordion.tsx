@@ -7,20 +7,15 @@ type AccordionPropsType = {
 
 function Accordion({titleValue, collapsed}: AccordionPropsType) {
     console.log('Accordion is rendering');
-    if (collapsed) {
-        return (
-            <>
-                <AccordionTitle title={titleValue}/>
-            </>
-        )
-    } else {
-        return (
-            <>
-                <AccordionTitle title={titleValue}/>
-                <AccordionBody/>
-            </>
-        );
-    }
+
+    return (
+        <>
+            <AccordionTitle title={titleValue}/>
+            {/*{!collapsed && <AccordionBody/>}*/}
+            {(collapsed) ? '' : <AccordionBody/>}
+        </>
+    );
+
 }
 
 type AccordionTitlePropsType = {

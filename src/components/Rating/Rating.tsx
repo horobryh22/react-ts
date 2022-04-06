@@ -6,61 +6,15 @@ type RatingPropsType = {
 
 function Rating({value}: RatingPropsType) {
 
-    if (value === 1) {
-        return <div>
-            <Star checked={true}/>
-            <Star checked={false}/>
-            <Star checked={false}/>
-            <Star checked={false}/>
-            <Star checked={false}/>
-        </div>
-    }
-    if (value === 2) {
-        return <div>
-            <Star checked={true}/>
-            <Star checked={true}/>
-            <Star checked={false}/>
-            <Star checked={false}/>
-            <Star checked={false}/>
-        </div>
-    }
-    if (value === 3) {
-        return <div>
-            <Star checked={true}/>
-            <Star checked={true}/>
-            <Star checked={true}/>
-            <Star checked={false}/>
-            <Star checked={false}/>
-        </div>
-    }
-    if (value === 4) {
-        return <div>
-            <Star checked={true}/>
-            <Star checked={true}/>
-            <Star checked={true}/>
-            <Star checked={true}/>
-            <Star checked={false}/>
-        </div>
-    }
-    if (value === 5) {
-        return <div>
-            <Star checked={true}/>
-            <Star checked={true}/>
-            <Star checked={true}/>
-            <Star checked={true}/>
-            <Star checked={true}/>
-        </div>
-    }
-
     return (
         <div>
-            <Star checked={false}/>
-            <Star checked={false}/>
-            <Star checked={false}/>
-            <Star checked={false}/>
-            <Star checked={false}/>
+            <Star checked={value >= 1}/>
+            <Star checked={value >= 2}/>
+            <Star checked={value >= 3}/>
+            <Star checked={value >= 4}/>
+            <Star checked={value >= 5}/>
         </div>
-    );
+    )
 }
 
 type StarPropsType = {
