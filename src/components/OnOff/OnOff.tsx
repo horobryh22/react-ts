@@ -1,20 +1,21 @@
 import React, {useState} from 'react';
 import classes from './OnOff.module.css'
 
+export type OnOffType = {
+    on: boolean
+    setOn: (on: boolean) => void
+}
 
-export const OnOff = () => {
+export const OnOff: React.FC<OnOffType> = ({on, setOn}) => {
 
-    const [on, setOn] = useState<boolean>(false);
-
-    const onClickButtonHandler = (on: boolean) => {
+    const onCLickButtonHandler = (on: boolean): () => void => {
         return () => setOn(on);
     }
 
-
     return (
         <div className={classes.wrapper}>
-            <button onClick={onClickButtonHandler(true)} className={on ? classes.on : ''}>On</button>
-            <button onClick={onClickButtonHandler(false)} className={!on ? classes.off : ''}>Off</button>
+            <button onClick={onCLickButtonHandler(true)} className={on ? classes.on : ''}>On</button>
+            <button onClick={onCLickButtonHandler(false)} className={!on ? classes.off : ''}>Off</button>
             <div className={`${classes.circle} ${on ? classes.circleOn : classes.circleOff}`}></div>
         </div>
     );

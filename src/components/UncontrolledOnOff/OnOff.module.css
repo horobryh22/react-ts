@@ -1,0 +1,27 @@
+.wrapper {
+    padding: 50px;
+    display: flex;
+}
+
+.on {
+    background-color: green;
+}
+
+.off {
+    background-color: red;
+}
+
+.circle {
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    border: 1px solid black;
+}
+
+.circleOn {
+    background-color: green;
+}
+
+.circleOff {
+    background-color: red;
+}
