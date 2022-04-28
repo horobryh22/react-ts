@@ -1,19 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
+import Rating, {RatingValueType} from './components/Rating/Rating';
 import Accordion from './components/Accordion/Accordion';
-import Rating from './components/Rating/Rating';
+import {OnOff} from './components/OnOff/OnOff';
 
 function App() {
-    console.log('App is rendering');
+
+    const [ratingValue, setRatingValue] = useState<RatingValueType>(0);
+    const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false);
+    const [on, setOn] = useState<boolean>(false);
+
     return (
-        <div>
-            {/*<AppTitle title={'This is APP component'}/>*/}
-            {/*Article1*/}
-            {/*<Rating  value={3}/>*/}
-            <Accordion titleValue={'Menu'} collapsed = {false}/>
-            <Accordion titleValue={'List Users'} collapsed = {true}/>
-            {/*Article1*/}
-            {/*<Rating value={4}/>*/}
+        <div className={'App'}>
+            <Accordion titleValue={'Menu'}
+                       collapsed={accordionCollapsed}
+                       setAccordionCollapsed={setAccordionCollapsed}/>
+            <hr/>
+            <Rating value={ratingValue} setRatingValue={setRatingValue}/>
+            <hr/>
+            <OnOff on={on} setOn={setOn}/>
         </div>
     );
 }
@@ -26,7 +31,6 @@ function AppTitle({title}: AppTitlePropsType) {
     console.log('AppTitle is rendering');
     return <div>{title}</div>;
 }
-
 
 
 export default App;

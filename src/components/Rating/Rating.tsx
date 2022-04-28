@@ -1,75 +1,33 @@
 import React from 'react';
 
+export type RatingValueType = 0 | 1 | 2 | 3 | 4 | 5;
+
 type RatingPropsType = {
-    value: 0 | 1 | 2 | 3 | 4 | 5
+    value: RatingValueType;
+    setRatingValue: (value: RatingValueType) => void
 }
 
-function Rating({value}: RatingPropsType) {
-
-    if (value === 1) {
-        return <div>
-            <Star checked={true}/>
-            <Star checked={false}/>
-            <Star checked={false}/>
-            <Star checked={false}/>
-            <Star checked={false}/>
-        </div>
-    }
-    if (value === 2) {
-        return <div>
-            <Star checked={true}/>
-            <Star checked={true}/>
-            <Star checked={false}/>
-            <Star checked={false}/>
-            <Star checked={false}/>
-        </div>
-    }
-    if (value === 3) {
-        return <div>
-            <Star checked={true}/>
-            <Star checked={true}/>
-            <Star checked={true}/>
-            <Star checked={false}/>
-            <Star checked={false}/>
-        </div>
-    }
-    if (value === 4) {
-        return <div>
-            <Star checked={true}/>
-            <Star checked={true}/>
-            <Star checked={true}/>
-            <Star checked={true}/>
-            <Star checked={false}/>
-        </div>
-    }
-    if (value === 5) {
-        return <div>
-            <Star checked={true}/>
-            <Star checked={true}/>
-            <Star checked={true}/>
-            <Star checked={true}/>
-            <Star checked={true}/>
-        </div>
-    }
+function Rating({value, setRatingValue}: RatingPropsType) {
 
     return (
         <div>
-            <Star checked={false}/>
-            <Star checked={false}/>
-            <Star checked={false}/>
-            <Star checked={false}/>
-            <Star checked={false}/>
+            <Star checked={value >= 1} setRatingValue={setRatingValue} value={1}/>
+            <Star checked={value >= 2} setRatingValue={setRatingValue} value={2}/>
+            <Star checked={value >= 3} setRatingValue={setRatingValue} value={3}/>
+            <Star checked={value >= 4} setRatingValue={setRatingValue} value={4}/>
+            <Star checked={value >= 5} setRatingValue={setRatingValue} value={5}/>
         </div>
-    );
+    )
 }
 
 type StarPropsType = {
+    value: RatingValueType
     checked: boolean
+    setRatingValue: (value: RatingValueType) => void
 }
 
-function Star({checked}: StarPropsType) {
-    console.log('Star is rendering');
-    return (checked) ? <span><b>Star</b> </span> : <span>Star </span>;
+function Star({checked, setRatingValue, value}: StarPropsType) {
+    return <span onClick={() => setRatingValue(value)}>{checked ? <b>Star </b> : 'Star ' }</span>;
 }
 
 export default Rating;
