@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import classes from './OnOff.module.css'
+import classes from './UncontrolledOnOff.module.css'
 
 
 export const UncontrolledOnOff = () => {
