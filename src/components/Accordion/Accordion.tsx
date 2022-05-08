@@ -16,16 +16,25 @@ type AccordionPropsType = {
     /**
      * color of header text
      */
-    color?:string
+    color?: string
+    items: Array<{ title: string, value: any }>
+    showMeValue: (value: any) => void
 }
 
-function Accordion({titleValue, setAccordionCollapsed, collapsed, color}: AccordionPropsType) {
+const Accordion: React.FC<AccordionPropsType> = ({
+                                                     titleValue,
+                                                     setAccordionCollapsed,
+                                                     collapsed,
+                                                     color,
+                                                     items,
+                                                     showMeValue
+                                                 }) => {
     console.log('Accordion is rendering');
 
     return (
         <>
             <AccordionTitle title={titleValue} color={color} callback={() => setAccordionCollapsed(!collapsed)}/>
-            {(collapsed) ? '' : <AccordionBody/>}
+            {(collapsed) ? '' : <AccordionBody items={items} onClick={showMeValue}/>}
         </>
     );
 
@@ -42,13 +51,24 @@ function AccordionTitle({title, callback, color}: AccordionTitlePropsType) {
     return <h3 style={{color: color}} onClick={callback}>{title}</h3>;
 }
 
-function AccordionBody() {
+export type AccordionBodyPropsType = {
+    items: Array<{ title: string, value: any }>
+    onClick: (value: any) => void
+}
+
+const AccordionBody: React.FC<AccordionBodyPropsType> = ({items, onClick}) => {
     console.log('AccordionBody is rendering');
+
     return (
         <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
+            {items.map((i, index) => {
+
+                const onClickHandler = () => {
+                    onClick(i.value);
+                }
+
+                return <li onClick={onClickHandler} key={index}>{i.title}</li>
+            })}
         </ul>
     );
 }
