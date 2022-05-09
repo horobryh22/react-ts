@@ -1,4 +1,4 @@
-import React, {useState, FocusEvent, KeyboardEvent} from 'react';
+import React, {useState, FocusEvent, KeyboardEvent, useEffect} from 'react';
 import classes from './Select.module.css';
 
 type SelectPropsType = {
@@ -10,10 +10,13 @@ type SelectPropsType = {
 export const Select: React.FC<SelectPropsType> = ({value, options, changeTitle}) => {
 
     const [collapsed, setCollapsed] = useState(false);
-    const [hover, setHover] = useState(true);
+    const [hoveredElement, setHoveredElement] = useState(value);
+
+    // useEffect(() => {
+    //     setHoveredElement(value);
+    // }, [value]);
 
     const onClickHandlerCollapsed = () => {
-        setHover(true);
         setCollapsed(!collapsed);
     }
 
@@ -21,8 +24,9 @@ export const Select: React.FC<SelectPropsType> = ({value, options, changeTitle})
         if (collapsed) onClickHandlerCollapsed();
     }
 
-    const onMouseMoveHandler = () => {
-           setHover(false);
+    const enterOrEscPressHandler = () => {
+        if (hoveredElement) changeTitle(hoveredElement);
+        onClickHandlerCollapsed();
     }
 
     const mappedOptions = options.map((el) => {
@@ -31,17 +35,49 @@ export const Select: React.FC<SelectPropsType> = ({value, options, changeTitle})
             onClickHandlerCollapsed();
         }
 
-        const elemClass = (el.value === value && hover) ? `${classes.elem} ${classes.active}` : `${classes.elem}`;
+        const onMouseEnterHandler = () => {
+            setHoveredElement(el.value);
+        }
 
-        return <div className={elemClass} onClick={onClickHandler} key={el.value}>{el.title}</div>
+        const elemClass = (hoveredElement === el.value) ? `${classes.elem} ${classes.active}` : `${classes.elem}`;
+
+        return <div className={elemClass} onMouseEnter={onMouseEnterHandler} onClick={onClickHandler}
+                    key={el.value}>{el.title}</div>
     })
 
-    const onKeyUpHandler =  (e: KeyboardEvent<HTMLDivElement>) => {
-        for (let i = 0; i < mappedOptions.length; i++) {
+    const onKeyUpHandler = (e: KeyboardEvent<HTMLDivElement>) => {
+        switch (e.key) {
+            case 'ArrowDown':
+                for (let i = 0; i < options.length - 1; i++) {
+                    if (options[i].value === hoveredElement) {
+                        changeTitle(options[i + 1].value);
+                        setHoveredElement(options[i + 1].value);
+                        break;
+                    }
+                }
+                break;
 
+            case 'ArrowUp':
+                for (let i = 0; i < options.length; i++) {
+                    if (options[i].value === hoveredElement) {
+                        if (options[i - 1]) {
+                            changeTitle(options[i - 1].value);
+                            setHoveredElement(options[i - 1].value);
+                        }
+                        break;
+                    }
+                }
+                break;
+
+            case 'Enter':
+                enterOrEscPressHandler();
+                break;
+
+            case 'Escape':
+                enterOrEscPressHandler();
+                break;
         }
     }
-
 
     const title = value ? options.find(el => el.value === value)?.title : options[0].title;
 
@@ -50,7 +86,7 @@ export const Select: React.FC<SelectPropsType> = ({value, options, changeTitle})
             <div className={classes.title} onClick={onClickHandlerCollapsed}>
                 {title}
             </div>
-            <div onMouseMove={onMouseMoveHandler} >
+            <div>
                 {collapsed && <div className={classes.list}>{mappedOptions}</div>}
             </div>
         </div>

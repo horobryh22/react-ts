@@ -29,13 +29,9 @@
 
 .elem.active {
     background-color: #8fdc8f;
+    cursor: default;
 }
 
 .title:hover {
-    cursor: default;
-}
-
-.elem:hover {
-    background-color: #8fdc8f;
-    cursor: default;
+    cursor: pointer;
 }
