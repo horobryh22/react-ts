@@ -1,0 +1,41 @@
+.wrapper {
+    width: 60px;
+}
+
+.title {
+    width: 100%;
+    height: 20px;
+    border: 2px solid #8fdc8f;
+    text-align: center;
+    transition: 0.5s all;
+}
+
+.list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border: 2px solid #8fdc8f;
+    border-top: 1px;
+    text-align: center;
+}
+
+.elem {
+    display: block;
+    width: 100%;
+    height: 20px;
+    transition: 0.3s all;
+}
+
+.elem.active {
+    background-color: #8fdc8f;
+}
+
+.title:hover {
+    cursor: default;
+}
+
+.elem:hover {
+    background-color: #8fdc8f;
+    cursor: default;
+}

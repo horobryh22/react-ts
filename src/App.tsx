@@ -34,10 +34,10 @@ function App() {
                 value={valueSelect}
                 options={
                     [
-                        {title: 'First', value: 1},
-                        {title: 'Second', value: 2},
-                        {title: 'Third', value: 3},
-                        {title: 'Fourth', value: 4},
+                        {title: 'First', value: '1'},
+                        {title: 'Second', value: '2'},
+                        {title: 'Third', value: '3'},
+                        {title: 'Fourth', value: '4'},
                     ]
                 }
                 changeTitle={setValueSelect}
