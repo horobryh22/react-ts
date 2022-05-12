@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useReducer} from 'react';
+import {ActionType, changeCollapsedStateAC, collapsedReducer} from '../../reducers/CollapsedReducer';
 
 type UncontrolledAccordionPropsType = {
     titleValue: string
@@ -9,18 +10,24 @@ type AccordionTitlePropsType = {
     onClickHandler: () => void
 }
 
+export type StateType = {
+    collapsed: boolean
+}
+
 export const UncontrolledAccordion: React.FC<UncontrolledAccordionPropsType> = ({titleValue}) => {
 
-    const [collapsed, setCollapsed] = useState<boolean>(true);
+    const [state, stateDispatch] = useReducer<(state: StateType, action: ActionType) => StateType>(collapsedReducer, {
+        collapsed: true
+    });
 
     const onClickHandler = () => {
-        setCollapsed(!collapsed);
+        stateDispatch(changeCollapsedStateAC(!state.collapsed));
     }
 
     return (
         <>
             <AccordionTitle title={titleValue} onClickHandler={onClickHandler}/>
-            {!collapsed && <AccordionBody/>}
+            {!state.collapsed && <AccordionBody/>}
         </>
     );
 

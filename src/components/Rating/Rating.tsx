@@ -3,7 +3,14 @@ import React from 'react';
 export type RatingValueType = 0 | 1 | 2 | 3 | 4 | 5;
 
 type RatingPropsType = {
+    /**
+     * it shows us how many stars will be rendered
+     */
     value: RatingValueType;
+    /**
+     * callback that change param 'value'
+     * @param value
+     */
     setRatingValue: (value: RatingValueType) => void
 }
 

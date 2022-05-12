@@ -2,7 +2,14 @@ import React from 'react';
 import classes from './OnOff.module.css'
 
 export type OnOffType = {
+    /**
+     * param that says us on button now or not
+     */
     on: boolean
+    /**
+     * callback, which change param 'on'
+     * @param on
+     */
     setOn: (on: boolean) => void
 }
 
