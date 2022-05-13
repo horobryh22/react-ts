@@ -4,7 +4,6 @@ import Rating, {RatingValueType} from './components/Rating/Rating';
 import Accordion from './components/Accordion/Accordion';
 import {OnOff} from './components/OnOff/OnOff';
 import {Select} from './components/Select/Select';
-import {UncontrolledAccordion} from './components/UncontrolledAccordion/UncontrolledAccordion';
 
 function App() {
 
@@ -19,35 +18,34 @@ function App() {
 
     return (
         <div className={'App'}>
-            {/*<Accordion*/}
-            {/*    items={[*/}
-            {/*        {title: 'Dimych', value: '1'},*/}
-            {/*        {title: 'Artem', value: '2'},*/}
-            {/*        {title: 'Viktor', value: '3'},*/}
-            {/*    ]}*/}
-            {/*    showMeValue={showMeValue}*/}
-            {/*    titleValue={'Menu'}*/}
-            {/*    collapsed={accordionCollapsed}*/}
-            {/*    setAccordionCollapsed={setAccordionCollapsed}*/}
-            {/*/>*/}
-            {/*<hr/>*/}
-            {/*<Select*/}
-            {/*    value={valueSelect}*/}
-            {/*    options={*/}
-            {/*        [*/}
-            {/*            {title: 'First', value: '1'},*/}
-            {/*            {title: 'Second', value: '2'},*/}
-            {/*            {title: 'Third', value: '3'},*/}
-            {/*            {title: 'Fourth', value: '4'},*/}
-            {/*        ]*/}
-            {/*    }*/}
-            {/*    changeTitle={setValueSelect}*/}
-            {/*/>*/}
-            {/*<hr/>*/}
-            {/*<Rating value={ratingValue} setRatingValue={setRatingValue}/>*/}
-            {/*<hr/>*/}
-            {/*<OnOff on={on} setOn={setOn}/>*/}
-            <UncontrolledAccordion titleValue={'List Users'}/>
+            <Accordion
+                items={[
+                    {title: 'Dimych', value: '1'},
+                    {title: 'Artem', value: '2'},
+                    {title: 'Viktor', value: '3'},
+                ]}
+                showMeValue={showMeValue}
+                titleValue={'Menu'}
+                collapsed={accordionCollapsed}
+                setAccordionCollapsed={setAccordionCollapsed}
+            />
+            <hr/>
+            <Select
+                value={valueSelect}
+                options={
+                    [
+                        {title: 'First', value: '1'},
+                        {title: 'Second', value: '2'},
+                        {title: 'Third', value: '3'},
+                        {title: 'Fourth', value: '4'},
+                    ]
+                }
+                changeTitle={setValueSelect}
+            />
+            <hr/>
+            <Rating value={ratingValue} setRatingValue={setRatingValue}/>
+            <hr/>
+            <OnOff on={on} setOn={setOn}/>
         </div>
     );
 }

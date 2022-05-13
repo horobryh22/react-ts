@@ -21,7 +21,7 @@ type AccordionPropsType = {
     showMeValue: (value: any) => void
 }
 
-const Accordion: React.FC<AccordionPropsType> = ({
+const AccordionSecret: React.FC<AccordionPropsType> = ({
                                                      titleValue,
                                                      setAccordionCollapsed,
                                                      collapsed,
@@ -40,23 +40,28 @@ const Accordion: React.FC<AccordionPropsType> = ({
 
 }
 
+const Accordion = React.memo(AccordionSecret);
+
 type AccordionTitlePropsType = {
     title: string
     callback: () => void
     color?: string
 }
 
-function AccordionTitle({title, callback, color}: AccordionTitlePropsType) {
+const AccordionTitleSecret =({title, callback, color}: AccordionTitlePropsType) => {
     console.log('AccordionTitle is rendering');
     return <h3 style={{color: color}} onClick={callback}>{title}</h3>;
 }
+
+const AccordionTitle = React.memo(AccordionTitleSecret);
 
 export type AccordionBodyPropsType = {
     items: Array<{ title: string, value: any }>
     onClick: (value: any) => void
 }
 
-const AccordionBody: React.FC<AccordionBodyPropsType> = ({items, onClick}) => {
+
+const AccordionBodySecret: React.FC<AccordionBodyPropsType> = ({items, onClick}) => {
     console.log('AccordionBody is rendering');
 
     return (
@@ -72,5 +77,7 @@ const AccordionBody: React.FC<AccordionBodyPropsType> = ({items, onClick}) => {
         </ul>
     );
 }
+
+const AccordionBody = React.memo(AccordionBodySecret)
 
 export default Accordion

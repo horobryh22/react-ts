@@ -1,4 +1,4 @@
-import React, {useState, FocusEvent, KeyboardEvent, useEffect} from 'react';
+import React, {useState, FocusEvent, KeyboardEvent} from 'react';
 import classes from './Select.module.css';
 
 type SelectPropsType = {
@@ -7,7 +7,7 @@ type SelectPropsType = {
     options: Array<{ title: string, value: string }>
 }
 
-export const Select: React.FC<SelectPropsType> = ({value, options, changeTitle}) => {
+const SelectSecret: React.FC<SelectPropsType> = ({value, options, changeTitle}) => {
 
     const [collapsed, setCollapsed] = useState(false);
     const [hoveredElement, setHoveredElement] = useState(value);
@@ -92,3 +92,5 @@ export const Select: React.FC<SelectPropsType> = ({value, options, changeTitle})
         </div>
     );
 };
+
+export const Select = React.memo(SelectSecret);

@@ -14,7 +14,7 @@ type RatingPropsType = {
     setRatingValue: (value: RatingValueType) => void
 }
 
-function Rating({value, setRatingValue}: RatingPropsType) {
+function RatingSecret({value, setRatingValue}: RatingPropsType) {
 
     return (
         <div>
@@ -27,15 +27,19 @@ function Rating({value, setRatingValue}: RatingPropsType) {
     )
 }
 
+const Rating = React.memo(RatingSecret)
+
 type StarPropsType = {
     value: RatingValueType
     checked: boolean
     setRatingValue: (value: RatingValueType) => void
 }
 
-function Star({checked, setRatingValue, value}: StarPropsType) {
+function StarSecret({checked, setRatingValue, value}: StarPropsType) {
     return <span onClick={() => setRatingValue(value)}>{checked ? <b>Star </b> : 'Star ' }</span>;
 }
+
+const Star = React.memo(StarSecret);
 
 export default Rating;
 

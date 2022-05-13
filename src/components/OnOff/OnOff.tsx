@@ -13,7 +13,7 @@ export type OnOffType = {
     setOn: (on: boolean) => void
 }
 
-export const OnOff: React.FC<OnOffType> = ({on, setOn}) => {
+const OnOffSecret: React.FC<OnOffType> = ({on, setOn}) => {
 
     const onCLickButtonHandler = (on: boolean): () => void => {
         return () => setOn(on);
@@ -27,3 +27,5 @@ export const OnOff: React.FC<OnOffType> = ({on, setOn}) => {
         </div>
     );
 };
+
+export const OnOff = React.memo(OnOffSecret);
