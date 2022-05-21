@@ -4,10 +4,12 @@ import classes from './Select.module.css';
 type SelectPropsType = {
     value: string | null
     changeTitle: (value: string) => void
-    options: Array<{ title: string, value: string }>
+    options: any
 }
 
 const SelectSecret: React.FC<SelectPropsType> = ({value, options, changeTitle}) => {
+
+    console.log('Select was rendered');
 
     const [collapsed, setCollapsed] = useState(false);
     const [hoveredElement, setHoveredElement] = useState(value);
@@ -29,7 +31,7 @@ const SelectSecret: React.FC<SelectPropsType> = ({value, options, changeTitle}) 
         onClickHandlerCollapsed();
     }
 
-    const mappedOptions = options.map((el) => {
+    const mappedOptions = options.map((el: any) => {
         const onClickHandler = () => {
             changeTitle(el.value);
             onClickHandlerCollapsed();
@@ -79,7 +81,7 @@ const SelectSecret: React.FC<SelectPropsType> = ({value, options, changeTitle}) 
         }
     }
 
-    const title = value ? options.find(el => el.value === value)?.title : options[0].title;
+    const title = value ? options.find((el: any) => el.value === value)?.title : options[0].title;
 
     return (
         <div className={classes.wrapper} onBlur={onBlurHandler} tabIndex={0} onKeyUp={onKeyUpHandler}>
