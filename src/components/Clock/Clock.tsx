@@ -4,6 +4,7 @@ import classes from './Clock.module.css'
 
 export type ClockPropsType = {
     seconds: number
+    modernStyle: boolean
 }
 
 const getTimeSeconds = (time: number) => (60 - time) | 0;
@@ -27,10 +28,10 @@ const renderTime = (dimension: string, time: number) => {
     );
 };
 
-export const Clock: React.FC<ClockPropsType> = ({seconds}) => {
+export const Clock: React.FC<ClockPropsType> = ({seconds, modernStyle}) => {
 
     const [counter, setCounter] = useState(seconds);
-    const [activateStyle, setActivateStyle] = useState<boolean>(false)
+    const [activateStyle, setActivateStyle] = useState<boolean>(modernStyle)
 
     useEffect(() => {
 

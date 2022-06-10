@@ -10,8 +10,15 @@ export default {
 
 const Template: ComponentStory<typeof Clock> = (props) => <Clock {...props}/>;
 
-export const Timer = Template.bind({});
+export const ModernTimer = Template.bind({});
+export const SimpleTimer = Template.bind({});
 
-Timer.args = {
-    seconds: 5085
+ModernTimer.args = {
+    seconds: 5085,
+    modernStyle: true
+}
+
+SimpleTimer.args = {
+    seconds: 10000,
+    modernStyle: false
 }
